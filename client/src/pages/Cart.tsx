@@ -11,16 +11,6 @@ const CartPage = () => {
   const deleteCartItemNotification = () =>
     toast.error("product deleted successfully", { duration: 2500 });
 
-  useEffect(() => {
-    fetch(`${baseURI}/api/cart`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setCart((cart) => data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
-
   const removeProductFromCart = async (id: string) => {
     try {
       const response = await fetch(`${baseURI}/api/cart/${id}`, {

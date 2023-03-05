@@ -13,7 +13,9 @@ const ProductList = ({ products }: props) => {
   const setCart = useSetAtom(cartAtom);
 
   const notify = () =>
-    toast.success("Product has been added to cart successfully", { duration: 2500 });
+    toast.success("Product has been added to cart successfully", {
+      duration: 2500,
+    });
 
   const addToCart = async (id: string) => {
     try {
@@ -40,9 +42,10 @@ const ProductList = ({ products }: props) => {
 
   return (
     <div className=" grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-8 lg:gap-8 place-items-center py-12">
-      {products.map((product) => (
+      {products.map((product, index) => (
         <ProductCard
           key={product._id}
+          id={index}
           image={product.image}
           _id={product._id}
           name={product.name}

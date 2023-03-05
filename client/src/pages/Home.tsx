@@ -15,7 +15,7 @@ const Home = () => {
 
   return (
     <div>
-      <div className="my-8 flex flex-col items-start md:items-center ">
+      <div className="my-8 flex flex-col min-h-screen items-start md:items-center ">
         <h1 className=" font-medium text-2xl w-full md:text-5xl md:text-center md:max-w-[700px] mt">
           Shop the most awesome products in our online store
         </h1>

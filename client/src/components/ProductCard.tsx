@@ -5,10 +5,12 @@ import { formatNumberToCurrency } from "../utils";
 
 interface props extends product {
   onAddToCart(): void;
+  id: number;
 }
 
 const ProductCard = ({
   _id,
+  id,
   name,
   description,
   image,
@@ -21,6 +23,7 @@ const ProductCard = ({
         src={image}
         alt={`image of a${image}`}
         className="w-full object-cover object-center aspect-square rounded-t-lg rounded-b-[2rem] mb-8"
+        loading={id > 4 ? "lazy" : "eager"}
       />
       <div className="">
         <h3 className=" font-semibold text-lg mb-2 -mt-2 rounded-md text-center">

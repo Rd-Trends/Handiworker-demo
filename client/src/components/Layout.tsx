@@ -1,14 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { BsCart2 } from "react-icons/bs";
-import { useAtomValue } from "jotai/react";
-import { cartItemsTotalAtom } from "../store";
+import { useAtomValue, useSetAtom } from "jotai/react";
+import { cartAtom, cartItemsTotalAtom } from "../store";
+import { baseURI } from "../config";
 
 interface props {
   children: React.ReactNode;
 }
 
 const Layout = ({ children }: props) => {
+  const setCart = useSetAtom(cartAtom);
+
+  useEffect(() => {
+    fetch(`${baseURI}/api/cart`)
+      .then((res) => res.json())
+      .then((data) => {
+        setCart((cart) => data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   const totalItemsInCart = useAtomValue(cartItemsTotalAtom);
   return (
     <div className="min-h-screen flex flex-col justify-between">

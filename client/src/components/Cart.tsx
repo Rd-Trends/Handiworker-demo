@@ -19,16 +19,19 @@ const Cart = ({ cartItems, onRemoveFromCart }: props) => {
   }, [cartItems]);
 
   return (
-    <div className=" flex flex-col gap-4 max-w-[800px] py-8 px-4 md:px-[2rem] mx-auto">
+    <div className=" flex flex-col gap-4 max-w-[800px] py-8 md:px-[2rem] mx-auto">
       <div className="flex justify-between border-b py-4 mb-1">
         <h1 className=" uppercase font-bold text-lg ">Order</h1>
         <p className="font-medium">Edit Cart</p>
       </div>
 
-      {cartItems.map((item) => (
+      {cartItems.map((item, index) => (
         <CartItem
           name={item.productId.name}
           price={item.productId.price}
+          image={item.productId.image}
+          quantity={item.quantity}
+          id={index}
           key={item._id}
           onRemoveFromCart={() => onRemoveFromCart(item.productId._id)}
         />
