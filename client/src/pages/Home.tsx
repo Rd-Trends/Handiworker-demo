@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import ProductList from "../components/ProductList";
+import { baseURI } from "../config";
 import { product } from "../interface";
 
 const Home = () => {
   const [products, setProducts] = useState<product[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/products")
+    fetch(`${baseURI}/api/products`)
       .then((res) => res.json())
       .then((data) => setProducts(data))
       .catch((err) => console.log(err));

@@ -3,6 +3,7 @@ import { product } from "../interface";
 import { cartAtom } from "../store";
 import ProductCard from "./ProductCard";
 import toast from "react-hot-toast";
+import { baseURI } from "../config";
 
 interface props {
   products: product[];
@@ -12,11 +13,11 @@ const ProductList = ({ products }: props) => {
   const setCart = useSetAtom(cartAtom);
 
   const notify = () =>
-    toast.success("Added the product to ", { duration: 2000 });
+    toast.success("Product has been added to cart successfully", { duration: 2500 });
 
   const addToCart = async (id: string) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/cart/${id}`, {
+      const response = await fetch(`${baseURI}/api/cart/${id}`, {
         method: "POST",
       });
       const data = await response.json();

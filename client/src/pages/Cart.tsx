@@ -3,15 +3,16 @@ import Cart from "../components/Cart";
 import { useAtom } from "jotai";
 import { cartAtom } from "../store";
 import toast from "react-hot-toast";
+import { baseURI } from "../config";
 
 const CartPage = () => {
   const [cart, setCart] = useAtom(cartAtom);
 
   const deleteCartItemNotification = () =>
-    toast.error("deleted product successfully");
+    toast.error("product deleted successfully", { duration: 2500 });
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/cart")
+    fetch(`${baseURI}/api/cart`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -22,7 +23,7 @@ const CartPage = () => {
 
   const removeProductFromCart = async (id: string) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/cart/${id}`, {
+      const response = await fetch(`${baseURI}/api/cart/${id}`, {
         method: "DELETE",
       });
       if (response.status === 200) {
